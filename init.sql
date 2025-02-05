@@ -1,0 +1,19 @@
+CREATE DATABASE IF NOT EXISTS test;
+
+USE test;
+
+CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'password';
+
+ALTER USER 'user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+FLUSH PRIVILEGES;
+
+GRANT ALL PRIVILEGES ON test.* TO 'user'@'%';
+FLUSH PRIVILEGES;
+
+CREATE TABLE IF NOT EXISTS books (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    cover VARCHAR(255),
+    price DECIMAL(10, 2) NOT NULL
+);
